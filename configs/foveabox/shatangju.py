@@ -24,7 +24,7 @@ default_hooks = dict(
     checkpoint=dict(
         type='CheckpointHook',
         interval=1,           # 每个 Epoch 存一次
-        max_keep_ckpts=2,     # 【关键】最多只保留最近的 2 个，老的自动删除
+        max_keep_ckpts=1,     # 【关键】最多只保留最近的 2 个，老的自动删除
         save_best='coco/bbox_mAP', # 另外保存一个效果最好的版本
         rule='greater'
     ),
