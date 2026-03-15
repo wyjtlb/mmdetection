@@ -18,7 +18,7 @@ train_pipeline = [
     dict(type='RandomFlip', prob=0.5),
     dict(type='PackDetInputs')
 ]
-train_dataloader = dict(batch_size=8, dataset=dict(pipeline=train_pipeline))
+train_dataloader = dict(batch_size=4, dataset=dict(pipeline=train_pipeline))
 # learning policy
 max_epochs = 150
 param_scheduler = [
