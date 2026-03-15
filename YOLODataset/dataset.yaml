@@ -1,0 +1,7 @@
+path: /Users/wuyongjie/Desktop/砂糖橘标签/YOLODataset
+train: images/train
+val: images/val
+test:
+
+names:
+    0: 0
