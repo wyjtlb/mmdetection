@@ -20,7 +20,17 @@ train_pipeline = [
 ]
 train_dataloader = dict(batch_size=4, dataset=dict(pipeline=train_pipeline))
 # learning policy
-max_epochs = 24
+default_hooks = dict(
+    checkpoint=dict(
+        type='CheckpointHook',
+        interval=1,           # 每个 Epoch 存一次
+        max_keep_ckpts=2,     # 【关键】最多只保留最近的 2 个，老的自动删除
+        save_best='coco/bbox_mAP', # 另外保存一个效果最好的版本
+        rule='greater'
+    ),
+    # ... 其他 hook 保持不变
+)
+max_epochs = 150
 param_scheduler = [
     dict(
         type='LinearLR', start_factor=0.001, by_epoch=False, begin=0, end=500),
@@ -29,7 +39,7 @@ param_scheduler = [
         begin=0,
         end=max_epochs,
         by_epoch=True,
-        milestones=[16, 22 ],
+        milestones=[120, 140],
         gamma=0.1)
 ]
 train_cfg = dict(max_epochs=max_epochs)
