@@ -1,5 +1,3 @@
-from mmdet.configs.maskformer.maskformer_r50_ms_16xb1_75e_coco import num_classes
-
 _base_ = './fovea_r50_fpn_4xb4-1x_coco.py'
 model = dict(
     backbone=dict(
