@@ -46,8 +46,8 @@ train_dataloader = dict(
     persistent_workers=True,
     sampler=dict(type='DefaultSampler', shuffle=True),
     batch_sampler=dict(type='AspectRatioBatchSampler'),
-    metainfo=metainfo,
     dataset=dict(
+        metainfo=metainfo,
         type=dataset_type,
         data_root=data_root,
         ann_file='annotations/train.json',
