@@ -20,7 +20,7 @@ train_pipeline = [
 ]
 train_dataloader = dict(batch_size=4, dataset=dict(pipeline=train_pipeline))
 # learning policy
-max_epochs = 150
+max_epochs = 24
 param_scheduler = [
     dict(
         type='LinearLR', start_factor=0.001, by_epoch=False, begin=0, end=500),
@@ -29,7 +29,7 @@ param_scheduler = [
         begin=0,
         end=max_epochs,
         by_epoch=True,
-        milestones=[120, 140 ],
+        milestones=[16, 22 ],
         gamma=0.1)
 ]
 train_cfg = dict(max_epochs=max_epochs)
