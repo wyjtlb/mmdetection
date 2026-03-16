@@ -43,4 +43,4 @@ param_scheduler = [
         gamma=0.1)
 ]
 train_cfg = dict(max_epochs=max_epochs)
-load_from = '/kaggle/input/datasets/mojadoer/foveabox-large/fovea_align_r101_fpn_gn-head_mstrain_640-800_4x4_2x_coco_20200208-649c5eb6.pth'
+load_from = '/kaggle/input/datasets/mojadoer/foveabox-pretrain-res50/fovea_r50_fpn_4x4_1x_coco_20200219-ee4d5303.pth'
