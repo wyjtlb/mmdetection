@@ -1,13 +1,13 @@
 _base_ = './fovea_r50_fpn_4xb4-1x_coco.py'
 model = dict(
-    backbone=dict(
-        depth=101,
-        init_cfg=dict(type='Pretrained',
-                      checkpoint='torchvision://resnet101')),
+    # backbone=dict(
+    #     depth=101,
+    #     init_cfg=dict(type='Pretrained',
+    #                   checkpoint='torchvision://resnet101')),
     bbox_head=dict(
-        num_classes=1,
-        with_deform=True,
-        norm_cfg=dict(type='GN', num_groups=32, requires_grad=True)))
+        num_classes=1,))
+        # with_deform=True,
+        # norm_cfg=dict(type='GN', num_groups=32, requires_grad=True)))
 train_pipeline = [
     dict(type='LoadImageFromFile', backend_args={{_base_.backend_args}}),
     dict(type='LoadAnnotations', with_bbox=True),
@@ -18,14 +18,14 @@ train_pipeline = [
     dict(type='RandomFlip', prob=0.5),
     dict(type='PackDetInputs')
 ]
-train_dataloader = dict(batch_size=4, dataset=dict(pipeline=train_pipeline))
+train_dataloader = dict(batch_size=8, dataset=dict(pipeline=train_pipeline))
 # learning policy
 default_hooks = dict(
     checkpoint=dict(
         type='CheckpointHook',
         interval=1,           # 每个 Epoch 存一次
         max_keep_ckpts=1,     # 【关键】最多只保留最近的 2 个，老的自动删除
-        save_best='coco/bbox_mAP', # 另外保存一个效果最好的版本
+        save_best='best/bbox_mAP', # 另外保存一个效果最好的版本
         rule='greater'
     ),
     # ... 其他 hook 保持不变
